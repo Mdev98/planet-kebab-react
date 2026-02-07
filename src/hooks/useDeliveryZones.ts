@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import apiClient from '../api/client';
-import { DeliveryZonesResponse, DeliveryZone } from '../types';
+import type { DeliveryZonesResponse, DeliveryZone } from '../types';
 
 interface UseDeliveryZonesOptions {
   storeId?: number;
@@ -13,7 +13,7 @@ export const useDeliveryZones = (options: UseDeliveryZonesOptions = {}) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchDeliveryZones = async (id?: number) => {
+  const fetchDeliveryZones = useCallback(async (id?: number) => {
     const targetId = id || storeId;
     if (!targetId) {
       setError('ID du magasin requis');
@@ -33,13 +33,13 @@ export const useDeliveryZones = (options: UseDeliveryZonesOptions = {}) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [storeId]);
 
   useEffect(() => {
     if (autoFetch && storeId) {
       fetchDeliveryZones();
     }
-  }, [storeId, autoFetch]);
+  }, [storeId, autoFetch, fetchDeliveryZones]);
 
   return { deliveryZones, loading, error, fetchDeliveryZones };
 };

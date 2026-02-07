@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import apiClient from '../api/client';
-import { ProductsResponse, Product } from '../types';
+import type { ProductsResponse, Product } from '../types';
 
 interface UseProductsOptions {
   storeId?: number;
@@ -13,7 +13,7 @@ export const useProducts = (options: UseProductsOptions = {}) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchProducts = async (id?: number) => {
+  const fetchProducts = useCallback(async (id?: number) => {
     const targetId = id || storeId;
     if (!targetId) {
       setError('ID du magasin requis');
@@ -33,13 +33,13 @@ export const useProducts = (options: UseProductsOptions = {}) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [storeId]);
 
   useEffect(() => {
     if (autoFetch && storeId) {
       fetchProducts();
     }
-  }, [storeId, autoFetch]);
+  }, [storeId, autoFetch, fetchProducts]);
 
   return { products, loading, error, fetchProducts };
 };

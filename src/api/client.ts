@@ -1,4 +1,5 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosError } from 'axios';
+import axios, { AxiosError } from 'axios';
+import type { AxiosInstance, AxiosRequestConfig } from 'axios';
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://api.planetkebabafrica.com';
 

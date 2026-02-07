@@ -1,0 +1,128 @@
+.store-location-page {
+  min-height: 100vh;
+  background-color: var(--color-primary);
+  background-image: 
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(255, 255, 255, 0.05) 10px,
+      rgba(255, 255, 255, 0.05) 20px
+    );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.store-location-content {
+  background-color: var(--color-white);
+  border-radius: var(--radius-xl);
+  padding: 3rem 2rem;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: var(--shadow-lg);
+}
+
+.store-location-logo {
+  margin: 0 auto 2rem;
+  /* Placeholder for logo */
+  width: 200px;
+  height: 80px;
+  background-color: var(--color-primary);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-title);
+  font-size: 1.5rem;
+}
+
+.store-location-title {
+  font-family: var(--font-title);
+  font-size: var(--font-size-2xl);
+  color: var(--color-text);
+  margin: 0 0 2rem 0;
+  text-align: center;
+}
+
+.store-location-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.store-location-select {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  background-color: var(--color-white);
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.store-location-select:hover {
+  border-color: var(--color-dark);
+}
+
+.store-location-select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.store-location-button {
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--color-primary);
+  border: none;
+  border-radius: var(--radius-lg);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.store-location-button:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.store-location-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.store-location-loading,
+.store-location-error {
+  text-align: center;
+  padding: 2rem;
+  font-family: var(--font-body);
+}
+
+.store-location-loading {
+  color: var(--color-dark);
+}
+
+.store-location-error {
+  color: var(--color-error);
+}
+
+@media (max-width: 768px) {
+  .store-location-content {
+    padding: 2rem 1.5rem;
+  }
+
+  .store-location-title {
+    font-size: var(--font-size-xl);
+  }
+
+  .store-location-logo {
+    width: 180px;
+    height: 70px;
+    font-size: 1.3rem;
+  }
+}

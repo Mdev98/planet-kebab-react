@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { AppState } from '../types';
+import type { AppState } from '../types';
 
 const STORAGE_KEY = 'planet-kebab-app-store';
 

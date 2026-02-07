@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import apiClient from '../api/client';
-import { SupplementsResponse, Supplement } from '../types';
+import type { SupplementsResponse, Supplement } from '../types';
 
 export const useSupplements = () => {
   const [pains, setPains] = useState<Supplement[]>([]);

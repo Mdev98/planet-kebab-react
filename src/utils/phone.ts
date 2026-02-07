@@ -1,4 +1,4 @@
-import { CountryCode } from '../types';
+import type { CountryCode } from '../types';
 
 export interface PhoneValidationResult {
   isValid: boolean;

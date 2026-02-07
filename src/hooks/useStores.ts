@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import apiClient from '../api/client';
-import { StoresResponse, Store } from '../types';
+import type { StoresResponse, Store } from '../types';
 
 interface UseStoresOptions {
   countryCode?: string;
@@ -13,7 +13,7 @@ export const useStores = (options: UseStoresOptions = {}) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchStores = async (code?: string) => {
+  const fetchStores = useCallback(async (code?: string) => {
     const country = code || countryCode;
     if (!country) {
       setError('Code pays requis');
@@ -33,13 +33,13 @@ export const useStores = (options: UseStoresOptions = {}) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [countryCode]);
 
   useEffect(() => {
     if (autoFetch && countryCode) {
       fetchStores();
     }
-  }, [countryCode, autoFetch]);
+  }, [countryCode, autoFetch, fetchStores]);
 
   return { stores, loading, error, fetchStores };
 };
@@ -49,7 +49,7 @@ export const useStoreInfo = (storeId?: number) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchStore = async (id?: number) => {
+  const fetchStore = useCallback(async (id?: number) => {
     const targetId = id || storeId;
     if (!targetId) return;
 
@@ -64,13 +64,13 @@ export const useStoreInfo = (storeId?: number) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [storeId]);
 
   useEffect(() => {
     if (storeId) {
       fetchStore();
     }
-  }, [storeId]);
+  }, [storeId, fetchStore]);
 
   return { store, loading, error, fetchStore };
 };

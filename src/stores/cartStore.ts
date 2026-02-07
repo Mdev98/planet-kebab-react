@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { CartState, CartItem, Product, CartItemSupplements } from '../types';
+import type { CartState, CartItem, Product, CartItemSupplements } from '../types';
 
 const STORAGE_KEY = 'planet-kebab-cart';
 
